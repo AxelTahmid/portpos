@@ -34,9 +34,7 @@ const fastJWT = async function (fastify) {
 			{
 				id: user.id,
 				email: user.email,
-				email_verified: Boolean(user.email_verified),
-				is_banned: Boolean(user.is_banned),
-				role: user.role
+				is_banned: Boolean(user.is_banned)
 			},
 			{ expiresIn: '1d' }
 		)

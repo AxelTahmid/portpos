@@ -1,5 +1,5 @@
 const authPublicRoutes = require('./auth/public')
-const userCustomerRoutes = require('./user/customer')
+const userCustomerRoutes = require('./user/public')
 
 module.exports = async function (app) {
 	app.setNotFoundHandler(function (request, reply) {

@@ -4,11 +4,11 @@ GRAY='\033[1;36m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
-echo -e "${GRAY}*************************************************"
-echo -e "*                                               *"
-echo -e "*        AREKTACOINSTORE DATABASE SCRIPT        *"
-echo -e "*                                               *"
-echo -e "*************************************************${NC}"
+echo -e "${GRAY}******************************************"
+echo -e "*                                        *"
+echo -e "*        AUTOMATE DATABASE SCRIPT        *"
+echo -e "*                                        *"
+echo -e "******************************************${NC}"
 echo ""
 sleep 1
 
