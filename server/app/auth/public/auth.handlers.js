@@ -4,8 +4,7 @@ const {
 	fetchUser,
 	getOTP,
 	verifyOTP,
-	updateUserPassword,
-	verifyUserEmail
+	updateUserPassword
 } = require('./auth.services')
 
 /**
@@ -68,33 +67,6 @@ const requestOTP = async function (request, reply) {
 }
 
 /**
- * * POST /v1/auth/verify-email
- */
-const verifyEmail = async function (request, reply) {
-	const email = request.user.email
-
-	if (request.user.email_verified) {
-		throw this.httpErrors.badRequest(`${email} already verified!`)
-	}
-
-	const check = await verifyOTP(this, { code: request.body.code, email })
-
-	if (!check) {
-		throw this.httpErrors.badRequest('OTP incorrect or expired')
-	}
-
-	const token = await verifyUserEmail(this, email)
-
-	reply.code(201)
-
-	return {
-		error: false,
-		message: 'User Email Verified',
-		data: { token }
-	}
-}
-
-/**
  * * POST /v1/auth/reset-password
  */
 const resetPassword = async function (request, reply) {
@@ -120,6 +92,5 @@ module.exports = {
 	register,
 	me,
 	requestOTP,
-	verifyEmail,
 	resetPassword
 }

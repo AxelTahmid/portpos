@@ -31,24 +31,5 @@ module.exports = {
 		},
 		asyncStackTraces: false,
 		debug: false
-	},
-	redis: {
-		host: process.env.REDIS_URL || 'localhost',
-		port: process.env.REDIS_PORT || '6379',
-		connectTimeout: 500,
-		maxRetriesPerRequest: 1
-	},
-	rate_limit: {
-		max: 15,
-		timeWindow: 1000 * 60,
-		nameSpace: 'acs:limit:',
-		skipOnError: false,
-		keyGenerator: request => {
-			const unique =
-				request.headers['x-real-ip'] ||
-				request.headers['x-forwarded-for'] ||
-				request.ip
-			return `${unique}:${request.routerPath}`
-		}
 	}
 }

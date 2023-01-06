@@ -37,17 +37,7 @@ app
 	.register(require('@fastify/formbody'))
 	.register(require('./plugins/jwt'))
 	.register(require('@fastify/sensible'))
-/**
- * * redis, because rate limit wants raw connection
- */
-const Redis = require('ioredis')
-const client = new Redis(app.conf.redis)
-app.register(require('@fastify/redis'), { client })
-/**
- * * Rate limit setup
- */
-app.conf.rate_limit.redis = client
-app.register(require('@fastify/rate-limit'), app.conf.rate_limit)
+
 /**
  * * MySQL Database
  */

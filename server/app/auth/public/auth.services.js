@@ -51,18 +51,6 @@ const registration = async (app, props) => {
 	return await app.knex('user_customers').insert({ email, password })
 }
 
-const verifyUserEmail = async (app, email) => {
-	const isUpdated = await app
-		.knex('user_customers')
-		.where('email', email)
-		.update({ email_verified: true })
-
-	if (!isUpdated) throw app.httpErrors.notFound(`User: ${email}, not found!`)
-
-	const user = await app.knex('user_customers').where('email', email).first()
-	return await app.auth.token({ ...user, role: 'customer' })
-}
-
 const updateUserPassword = async (app, props) => {
 	const { email, password } = props || {}
 
@@ -109,6 +97,5 @@ module.exports = {
 	fetchUser,
 	getOTP,
 	verifyOTP,
-	verifyUserEmail,
 	updateUserPassword
 }
