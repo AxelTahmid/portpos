@@ -1,14 +1,6 @@
 module.exports = {
 	cors: {
-		origin: [
-			/\.arektacoinstore\.com$/,
-			'https://arektacoinstore.com',
-			'https://admin.arektacoinstore.com',
-			'https://dev.arektacoinstore.com',
-			'https://api.arektacoinstore.com',
-			'http://localhost:3001',
-			'http://localhost:3000'
-		],
+		origin: ['http://localhost:3001', 'http://localhost:3000'],
 		method: ['GET', 'PUT', 'PATCH', 'POST', 'DELETE'],
 		allowedHeaders: [
 			'Content-Type',
