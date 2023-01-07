@@ -44,22 +44,8 @@ const registration = async (app, props) => {
 	return await app.knex('admins').insert({ email, password })
 }
 
-const updateUserPassword = async (app, props) => {
-	const { email, password } = props || {}
-
-	const hashedPassword = await app.bcrypt.hash(password)
-
-	const isUpdated = await app
-		.knex('admins')
-		.where('email', email)
-		.update({ password: hashedPassword })
-
-	if (!isUpdated) throw app.httpErrors.notFound(`User: ${email}, not found!`)
-}
-
 module.exports = {
 	registration,
 	authenticate,
-	fetchUser,
-	updateUserPassword
+	fetchUser
 }

@@ -5,10 +5,10 @@
 exports.up = async knex => {
 	await knex.schema.createTable('orders', table => {
 		table.increments('id')
+		table.integer('amount').notNullable()
 		table
 			.enu('status', ['Pending', 'Paid', 'Fulfilled', 'Refund'])
 			.defaultTo('Pending')
-		table.integer('amount')
 
 		table.integer('product_id').unsigned()
 		table

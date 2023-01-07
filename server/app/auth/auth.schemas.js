@@ -2,7 +2,7 @@ const {
 	emailPassObj,
 	userObject,
 	responseObject
-} = require('../../../config/schema')
+} = require('../../config/schema')
 
 /**
  * * POST /v1/auth/login
