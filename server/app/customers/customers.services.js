@@ -13,9 +13,13 @@ const customerByID = async (app, id) => {
 const createCustomer = async (app, props) => {
 	const { name, email, phone, address } = props || {}
 
-	let customer = await app.knex('customers').where('email', email).first()
+	let customer = await app
+		.knex('customers')
+		.where('email', email)
+		.orWhere('phone', phone)
+		.first()
 
-	if (customer) throw app.httpErrors.badRequest(`customer: ${email} exists!`)
+	if (customer) throw app.httpErrors.badRequest('customer exists!')
 
 	customer = await app.knex('customers').insert({ name, email, phone, address })
 
