@@ -3,13 +3,7 @@ const { join } = require('node:path')
 
 const fp = require('fastify-plugin')
 const { default: fastifyJwt } = require('@fastify/jwt')
-const {
-	authenticated,
-	verified,
-	admin,
-	manager,
-	restricted
-} = require('../utility/jwt')
+const { authenticated } = require('../utility/jwt')
 
 /**
  * * All JWT features including roles
@@ -43,14 +37,7 @@ const fastJWT = async function (fastify) {
 	fastify.decorate('authenticate', authenticated)
 
 	fastify.decorate('auth', {
-		token,
-		verified
-	})
-
-	fastify.decorate('role', {
-		admin,
-		manager,
-		restricted
+		token
 	})
 }
 module.exports = fp(fastJWT)

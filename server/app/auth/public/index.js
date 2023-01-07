@@ -15,40 +15,40 @@ const {
 	resetPasswordSchema
 } = require('./auth.schemas')
 
-module.exports = async function (fastify) {
-	fastify.register(bcrypt)
+module.exports = async function (app) {
+	app.register(bcrypt)
 
-	fastify.route({
+	app.route({
 		method: 'POST',
 		url: '/register',
 		schema: registerSchema,
 		handler: register
 	})
 
-	fastify.route({
+	app.route({
 		method: 'POST',
 		url: '/login',
 		schema: loginSchema,
 		handler: login
 	})
 
-	fastify.route({
+	app.route({
 		method: 'GET',
 		url: '/me',
-		onRequest: fastify.authenticate,
+		onRequest: app.authenticate,
 		schema: meSchema,
 		handler: me
 	})
 
-	fastify.route({
+	app.route({
 		method: 'POST',
 		url: '/otp-code',
-		onRequest: fastify.authenticate,
+		onRequest: app.authenticate,
 		schema: requestOTPSchema,
 		handler: requestOTP
 	})
 
-	fastify.route({
+	app.route({
 		method: 'POST',
 		url: '/reset-password',
 		schema: resetPasswordSchema,
