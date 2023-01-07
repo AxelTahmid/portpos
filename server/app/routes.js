@@ -1,4 +1,5 @@
-const authPublicRoutes = require('./auth')
+const authRoutes = require('./auth')
+const customerRoutes = require('./customers')
 
 module.exports = async function (app) {
 	app.setNotFoundHandler(function (request, reply) {
@@ -10,5 +11,7 @@ module.exports = async function (app) {
 	/**
 	 * * Service Routes Registration with Prefix
 	 */
-	app.register(authPublicRoutes, { prefix: '/v1/auth' })
+	app
+		.register(authRoutes, { prefix: '/v1/auth' })
+		.register(customerRoutes, { prefix: '/v1/customer' })
 }
