@@ -1,15 +1,3 @@
-# Fastify Starter Template
-
-This is a fastify starter template with authentication, otp verification using `JWT` and `bcrypt.js` via `Knex.js`
-
-Includes features :
-
-- Auth & OTP verification
-- User CRUD & Role
-- Global Error Handler with `@fastify/sensible`
-- S3 Object Storage
-- Rate limiting on Route by IP
-
 ## Project Structure
 
 - app contains all separated features
@@ -19,12 +7,17 @@ Includes features :
 
 ## Installation Steps
 
-### Local: Node >= 16.
+### Local: Node - lts ( 16.xx or 18.xx ).
 
-create `.env` from `.env.example` file and replace with necessary values. You will need a MySQL or MariaDB database with a Redis instance. You can setup Redis with docker. Then just install and run.
+create `.env` from `.env.example` file and replace with necessary values. You will need a MySQL or MariaDB database.
 
 ```
 npm install
+
+npm run key
+
+npm run sql
+
 npm run dev
 ```
 

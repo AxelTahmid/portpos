@@ -11,4 +11,20 @@ exports.seed = async function (knex) {
 			password: '$2a$10$mYKo/KMUnAWpS5hZkAmyyuwocUTNKv1dYrJC534cT7TJ/1.cSeSF2'
 		}
 	])
+
+	await knex('customers').insert([
+		{
+			name: 'Mr Tahmid',
+			email: 'tahmid@portpos.com',
+			phone: '01711111111',
+			address: 'Test'
+		}
+	])
+
+	await knex('products').insert([
+		{
+			name: 'ducky',
+			details: 'quack-quack'
+		}
+	])
 }

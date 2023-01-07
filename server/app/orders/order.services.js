@@ -1,3 +1,5 @@
+const wallet = require('./wallet.service')
+
 const orderList = async app => {
 	return await app
 		.knex('orders')
@@ -14,6 +16,7 @@ const orderList = async app => {
 			'customers.address as customer_address',
 			'admins.email as admin_email'
 		)
+		.orderBy('id', 'desc')
 }
 
 const orderByID = async (app, id) => {
@@ -43,9 +46,21 @@ const orderByID = async (app, id) => {
 const createOrder = async (app, props) => {
 	const { amount, customer_id, product_id, admin_id } = props || {}
 
-	const order = await app
-		.knex('orders')
-		.insert({ amount, customer_id, product_id, admin_id })
+	const order = await app.knex('orders').insert({
+		amount,
+		customer_id,
+		product_id,
+		admin_id
+	})
+
+	const orderDetails = await orderByID(app, order)
+
+	const walletData = await wallet.createInvoice(orderDetails)
+
+	await app.knex('orders').where('id', order).update({
+		invoice_id: walletData.invoice_id,
+		payment_link: walletData.action.url
+	})
 
 	return await orderByID(app, order)
 }
