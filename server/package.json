@@ -1,0 +1,44 @@
+{
+	"name": "portpos",
+	"version": "1.0.0",
+	"description": "portpos test api",
+	"main": "server.js",
+	"type": "commonjs",
+	"scripts": {
+		"start": "node server.js",
+		"dev": "nodemon server.js",
+		"sql": "bash ./database/database.sh",
+		"key": "cd certs/ && bash generate.sh",
+		"format:check": "npx prettier --check .",
+		"format:fix": "npx prettier --write .",
+		"lint:check": "npx eslint --ext .js .",
+		"lint:fix": "npx eslint --ext .js . --fix"
+	},
+	"author": "AxelTahmid",
+	"license": "ISC",
+	"dependencies": {
+		"@fastify/cors": "^8.2.0",
+		"@fastify/formbody": "^7.3.0",
+		"@fastify/helmet": "^10.0.2",
+		"@fastify/jwt": "^6.3.3",
+		"@fastify/sensible": "^5.1.1",
+		"bcryptjs": "^2.4.3",
+		"close-with-grace": "^1.1.0",
+		"dotenv": "^16.0.2",
+		"fastify": "^4.10.0",
+		"fastify-plugin": "^4.3.0",
+		"fluent-json-schema": "^4.0.0",
+		"knex": "^2.3.0",
+		"mysql2": "^2.3.3"
+	},
+	"devDependencies": {
+		"eslint": "^8.25.0",
+		"eslint-config-standard": "^17.0.0",
+		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-n": "^15.6.0",
+		"eslint-plugin-promise": "^6.1.0",
+		"nodemon": "^2.0.20",
+		"pino-pretty": "^9.1.1",
+		"prettier": "^2.7.1"
+	}
+}
