@@ -1,11 +1,11 @@
 const resource = '/v1/product/'
 
 export default ($client) => ({
-  fetchList() {
+  fetch() {
     return $client.get(resource)
   },
 
-  fetch(id) {
+  fetchById(id) {
     return $client.get(resource + id)
   },
 

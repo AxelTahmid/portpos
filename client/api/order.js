@@ -1,7 +1,5 @@
 const resource = '/v1/order/'
 
-// TODO add the new apis, filtering
-
 export default ($client) => ({
   fetch() {
     return $client.get(resource)
