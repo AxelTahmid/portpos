@@ -2,12 +2,11 @@
   <v-container fluid class="pa-2">
     <table-header
       title="Orders"
-      :add-btn="false"
       @updateSearch="search = $event"
       @initialize="initialize()"
       @flush="initialize()"
+      @showForm="formDialog = !formDialog"
     />
-    <!-- @showForm="formDialog = !formDialog" -->
 
     <v-row class="pa-0">
       <v-col class="py-0">
@@ -98,12 +97,10 @@
       </v-col>
     </v-row>
 
-    <confirmation-dialogue
-      title="delete"
-      :show="deleteDialog"
-      :processing="btnLoading"
-      @close="closeDeleteDialog()"
-      @action="callDestroy()"
+    <order-form
+      :show.sync="formDialog"
+      :processing.sync="loading"
+      @create="create"
     />
   </v-container>
 </template>

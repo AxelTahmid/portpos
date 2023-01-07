@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node --openssl-legacy-provider ./node_modules/nuxt/bin/nuxt.js -p=3001",
-     "lint-check": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
+    "lint-check": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
     "format-check": "prettier --check .",
     "check": "npm run lint-check && npm run format-check",
     "fix": "prettier --write --list-different . && npm run lint-check -- --fix"

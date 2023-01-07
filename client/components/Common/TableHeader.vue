@@ -27,17 +27,7 @@
           <span class="px-2">fetch</span>
         </v-btn>
 
-        <v-btn class="white" small @click.prevent="$emit('flush')">
-          <v-icon> mdi-database-refresh-outline </v-icon>
-          <span class="px-2">clear</span>
-        </v-btn>
-
-        <v-btn
-          v-if="addBtn"
-          class="white"
-          small
-          @click.prevent="$emit('showForm')"
-        >
+        <v-btn class="white" small @click.prevent="$emit('showForm')">
           <v-icon> mdi-plus </v-icon>
           <span class="px-2">add</span>
         </v-btn>
@@ -63,11 +53,7 @@
 export default {
   name: 'TableHeader',
   props: {
-    title: String,
-    addBtn: {
-      type: Boolean,
-      default: true
-    }
+    title: String
   },
 
   data() {
