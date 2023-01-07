@@ -1,4 +1,4 @@
-const { createInvoice } = require('./wallet.service')
+const wallet = require('./wallet.service')
 
 const orderList = async app => {
 	return await app
@@ -16,6 +16,7 @@ const orderList = async app => {
 			'customers.address as customer_address',
 			'admins.email as admin_email'
 		)
+		.orderBy('id', 'desc')
 }
 
 const orderByID = async (app, id) => {
@@ -43,45 +44,25 @@ const orderByID = async (app, id) => {
 }
 
 const createOrder = async (app, props) => {
-	// const { amount, customer_id, product_id, admin_id } = props || {}
+	const { amount, customer_id, product_id, admin_id } = props || {}
 
-	// const order = await app
-	// 	.knex('orders')
-	// 	.insert({ amount, customer_id, product_id, admin_id })
+	const order = await app.knex('orders').insert({
+		amount,
+		customer_id,
+		product_id,
+		admin_id
+	})
 
-	// return await orderByID(app, order)
+	const orderDetails = await orderByID(app, order)
 
-	const customerObj = {
-		name: 'Mr Postpos',
-		email: 'ducky@postpos.com',
-		phone: '01761613788',
-		address: {
-			street: 'Dhaka',
-			city: 'Dhaka',
-			state: 'Dhaka',
-			zipcode: '1212',
-			country: 'BD'
-		}
-	}
-	const testObj = {
-		order: {
-			amount: 1200,
-			currency: 'BDT',
-			redirect_url: 'http://www.localhost.test/'
-		},
-		product: {
-			name: 'Duck',
-			description: 'quack quack..'
-		},
-		billing: {
-			customer: customerObj
-		},
-		shipping: {
-			customer: customerObj
-		}
-	}
+	const walletData = await wallet.createInvoice(orderDetails)
 
-	return await createInvoice(testObj)
+	await app.knex('orders').where('id', order).update({
+		invoice_id: walletData.invoice_id,
+		payment_link: walletData.action.url
+	})
+
+	return await orderByID(app, order)
 }
 
 const updateOrder = async (app, id, props) => {

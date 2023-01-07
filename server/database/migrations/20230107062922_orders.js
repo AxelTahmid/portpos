@@ -6,6 +6,8 @@ exports.up = async knex => {
 	await knex.schema.createTable('orders', table => {
 		table.increments('id')
 		table.integer('amount').notNullable()
+		table.string('invoice_id')
+		table.text('payment_link')
 		table
 			.enu('status', ['Pending', 'Paid', 'Fulfilled', 'Refund'])
 			.defaultTo('Pending')

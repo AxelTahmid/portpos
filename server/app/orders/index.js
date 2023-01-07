@@ -28,7 +28,7 @@ module.exports = async function (app) {
 		method: 'POST',
 		url: '/',
 		onRequest: app.authenticate,
-		// schema: s_create,
+		schema: s_create,
 		handler: create
 	})
 
