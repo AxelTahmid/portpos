@@ -18,12 +18,12 @@ else
 fi
 
 echo "starting development server"
-echo "serving api at localhost:3000"
+echo "serving server at localhost:3000"
 
 cd server
 npm run dev
 
-echo "serving admin panel at localhost:3001"
+echo "serving client at localhost:3001"
 
 cd ../client/
 npm run dev
