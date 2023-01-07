@@ -3,11 +3,10 @@
  * @returns { Promise<void> }
  */
 exports.up = async knex => {
-	await knex.schema.createTable('users', table => {
+	await knex.schema.createTable('admins', table => {
 		table.increments('id')
 		table.string('email', 128).unique().notNullable()
 		table.string('password', 64).notNullable()
-		table.boolean('is_banned').defaultTo(false)
 		table.timestamps(true, true)
 	})
 }
@@ -17,5 +16,5 @@ exports.up = async knex => {
  * @returns { Promise<void> }
  */
 exports.down = async knex => {
-	await knex.schema.dropTableIfExists('users')
+	await knex.schema.dropTableIfExists('admins')
 }
