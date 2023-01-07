@@ -4,14 +4,14 @@ const {
 	create,
 	update,
 	destroy
-} = require('./customers.handlers')
+} = require('./products.handlers')
 const {
 	s_showAll,
 	s_show,
 	s_create,
 	s_update,
 	s_destroy
-} = require('./customers.schema')
+} = require('./products.schema')
 
 module.exports = async function (app) {
 	app.route({
