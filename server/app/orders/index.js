@@ -1,17 +1,11 @@
-const {
-	showAll,
-	show,
-	create,
-	update,
-	destroy
-} = require('./customers.handlers')
+const { showAll, show, create, update, destroy } = require('./order.handlers')
 const {
 	s_showAll,
 	s_show,
 	s_create,
 	s_update,
 	s_destroy
-} = require('./customers.schema')
+} = require('./order.schema')
 
 module.exports = async function (app) {
 	app.route({

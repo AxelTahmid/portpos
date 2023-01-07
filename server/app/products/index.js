@@ -13,43 +13,43 @@ const {
 	s_destroy
 } = require('./products.schema')
 
-module.exports = async function (fastify) {
-	fastify.route({
+module.exports = async function (app) {
+	app.route({
 		method: 'GET',
 		url: '/',
-		onRequest: fastify.authenticate,
+		onRequest: app.authenticate,
 		schema: s_showAll,
 		handler: showAll
 	})
 
-	fastify.route({
+	app.route({
 		method: 'GET',
 		url: '/:id',
-		onRequest: fastify.authenticate,
+		onRequest: app.authenticate,
 		schema: s_show,
 		handler: show
 	})
 
-	fastify.route({
+	app.route({
 		method: 'POST',
 		url: '/',
-		onRequest: fastify.authenticate,
+		onRequest: app.authenticate,
 		schema: s_create,
 		handler: create
 	})
 
-	fastify.route({
+	app.route({
 		method: ['PUT', 'PATCH'],
 		url: '/:id',
-		onRequest: fastify.authenticate,
+		onRequest: app.authenticate,
 		schema: s_update,
 		handler: update
 	})
 
-	fastify.route({
+	app.route({
 		method: 'DELETE',
 		url: '/:id',
-		onRequest: fastify.authenticate,
+		onRequest: app.authenticate,
 		schema: s_destroy,
 		handler: destroy
 	})
